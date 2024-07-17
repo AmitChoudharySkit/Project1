@@ -1,7 +1,16 @@
 import mongoose from "mongoose";
 
-export const connectDB = async () =>{
-    await mongoose.connect('mongodb+srv://dulanjalisenarathna93:E2JUb0zfaT2FVp8D@cluster0.exkxkun.mongodb.net/reactjs-food-delivery-app').then(()=>{
-       console.log('DB connected') ;
-    })
-}
+// Replace the connection string with your Amazon DocumentDB connection string
+const dbURI = 'mongodb://bhupendra:admin123@docdb-2024-07-17-05-42-42.cluster-cn6s2esoyp0r.ap-south-1.docdb.amazonaws.com:27017/?tls=true&tlsCAFile=global-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false';
+
+export const connectDB = async () => {
+    try {
+        await mongoose.connect(dbURI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log('MongoDB connected');
+    } catch (error) {
+        console.error('MongoDB connection error:', error.message);
+    }
+};
